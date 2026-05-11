@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
-from .forms import ClienteForm
+from .forms import ClienteForm, UserForm
 from .models import Cliente
 
 # Create your views here.
@@ -80,4 +80,20 @@ def login_usuario(request):
 
     context = {'form': form}
         
+    return render(request, template_name, context)
+
+def novo_user(request):
+    template_name = 'novo_user.html'
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.set_password(f.password)
+            f.save()
+            return redirect('login_usuario')
+        else:
+            return HttpResponse('<h1>Deu erro no formulário</h1>')
+    else:
+        form = UserForm()
+    context = {'form': form}
     return render(request, template_name, context)

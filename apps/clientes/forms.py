@@ -1,5 +1,6 @@
 from .models import Cliente
 from django import forms
+from django.contrib.auth.models import User
 
 class ClienteForm(forms.ModelForm):
     nome =            forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -10,3 +11,7 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = '__all__'
+
+class UserForm(forms.ModelForm):
+    model = User
+    fields = ['first_name', 'last_name', 'username', 'password']
