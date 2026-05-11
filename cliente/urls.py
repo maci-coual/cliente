@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('atualizar-cliente/<int:id>/', views.atualizar_cliente, name='atualizar_cliente'),
     path('delete-cliente/<int:id>/', views.delete, name='delete_cliente'),
+    path('login/', views.login_usuario, name='login_usuario'),
     path('', views.novo_cliente, name='novo_cliente'),
 ]
