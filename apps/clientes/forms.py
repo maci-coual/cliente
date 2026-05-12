@@ -13,5 +13,11 @@ class ClienteForm(forms.ModelForm):
         fields = '__all__'
 
 class UserForm(forms.ModelForm):
-    model = User
-    fields = ['first_name', 'last_name', 'username', 'password']
+    first_name = forms.CharField(label='Nome', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(label='Sobrenome', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(label='Nome de Usuário', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label='Senha', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'password']
