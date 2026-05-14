@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
@@ -62,6 +62,7 @@ def delete(request, id):
     cliente.delete()
     return redirect('novo_cliente')
 
+
 def login_usuario(request):
     template_name = 'login.html'
     if request.method == 'POST':
@@ -82,6 +83,7 @@ def login_usuario(request):
         
     return render(request, template_name, context)
 
+@login_required
 def novo_user(request):
     template_name = 'novo_user.html'
     if request.method == 'POST':
@@ -97,3 +99,8 @@ def novo_user(request):
         form = UserForm()
     context = {'form': form}
     return render(request, template_name, context)
+
+@login_required
+def sair(request):
+    logout(request)
+    return redirect('login_usuario')
