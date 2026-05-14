@@ -83,7 +83,7 @@ def login_usuario(request):
         
     return render(request, template_name, context)
 
-@login_required
+
 def novo_user(request):
     template_name = 'novo_user.html'
     if request.method == 'POST':
