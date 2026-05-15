@@ -13,7 +13,7 @@ from .models import Cliente
 @login_required
 def novo_cliente(request):
     clientes = Cliente.objects.all()
-    template_name = 'novo_cliente.html'
+    template_name = 'clientes.html'
     context = {}
     if request.method == 'POST':
         form = ClienteForm(request.POST)
@@ -44,7 +44,7 @@ def atualizar_cliente(request, id):
             return HttpResponse('<h1>Deu erro no formulário</h1>')
         
     form = ClienteForm(instance=cliente)
-    template_name = 'novo_cliente.html'
+    template_name = 'clientes.html'
     clientes = Cliente.objects.all()
     context = {
         'form': form,
