@@ -100,6 +100,7 @@ def novo_user(request):
     context = {'form': form}
     return render(request, template_name, context)
 
+
 @login_required
 def sair(request):
     logout(request)
